@@ -14,5 +14,7 @@ app.get("/", (req, res) => {
   res.send("Hello from Express server with json-server!");
 });
 
+app.listen(port);
+
 // Export the handler to be used by Vercel
 module.exports = app;
