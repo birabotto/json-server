@@ -15,7 +15,7 @@ const middlewares = jsonServer.defaults();
 
 // Use json-server middlewares
 app.use(middlewares);
-app.use("/", router);
+app.use("/api", router);
 
 // Add additional routes for Express if needed
 app.get("/", (req, res) => {
