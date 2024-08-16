@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 
 // Set up json-server to use a custom db.json file
 const router = jsonServer.router({
-  ...JSON.parse(fs.readFileSync(path.join(__dirname, "../db.json"))),
+  ...JSON.parse(fs.readFileSync(path.join(__dirname, "db.json"))),
 });
 const middlewares = jsonServer.defaults();
 
