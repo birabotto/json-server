@@ -20,10 +20,34 @@
 // module.exports = app;
 
 const express = require("express");
+const jsonServer = require("json-server");
+const path = require("path");
+
+const PORT = 3000;
 const app = express();
 
-app.get("/", (req, res) => res.send("Express on Vercel!!!"));
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
+const server = jsonServer.create();
+const router = jsonServer.router(path.join(__dirname, "db.json"));
+// const middlewares = jsonServer.defaults({
+//   static: undefined,
+// });
 
-module.exports = app;
+// server.use(middlewares);
+
+server.use(
+  jsonServer.rewriter({
+    "/api/*": "/$1",
+  })
+);
+server.use(router);
+
+server.listen(PORT, () => {
+  console.log("JSON Server is running");
+});
